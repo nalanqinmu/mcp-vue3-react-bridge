@@ -4,7 +4,7 @@
 
 import { convertDesignToVue3 } from './index';
 
-interface CursorContext {
+export interface CursorContext {
   workspace: {
     rootPath: string;
   };
@@ -54,11 +54,15 @@ export async function cursorConvertFigmaToVue3(context: CursorContext) {
       message: `成功将Figma设计转换为Vue3组件: ${outputPath}`,
       componentPath: outputPath
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : '未知错误';
+    
     return {
       success: false,
-      message: `转换失败: ${error.message}`,
-      error: error.toString()
+      message: `转换失败: ${errorMessage}`,
+      error: error instanceof Error ? error.toString() : String(error)
     };
   }
 }

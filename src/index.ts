@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
 import { commands } from './cursor-adapter';
+import { createSSEServer } from './server';
 
 // 读取配置文件
 function loadConfig(configPath: string): any {
@@ -65,21 +66,28 @@ export async function convertDesignToVue3(
 if (require.main === module) {
   // 如果直接运行该文件
   const args = process.argv.slice(2);
-  if (args.length < 2) {
+  
+  // 启动SSE服务器
+  if (args[0] === 'server') {
+    const port = parseInt(args[1]) || 3000;
+    createSSEServer(port);
+  } else if (args.length >= 2) {
+    // 正常的命令行处理
+    const [figmaFileId, outputDir] = args;
+    
+    convertDesignToVue3(figmaFileId, outputDir)
+      .then(outputPath => {
+        console.log(`组件已生成: ${outputPath}`);
+      })
+      .catch(error => {
+        console.error('转换失败:', error);
+        process.exit(1);
+      });
+  } else {
     console.log('用法: node index.js <Figma文件ID> <输出目录>');
+    console.log('或者: node index.js server [端口号]');
     process.exit(1);
   }
-  
-  const [figmaFileId, outputDir] = args;
-  
-  convertDesignToVue3(figmaFileId, outputDir)
-    .then(outputPath => {
-      console.log(`组件已生成: ${outputPath}`);
-    })
-    .catch(error => {
-      console.error('转换失败:', error);
-      process.exit(1);
-    });
 }
 
 // 导出所有可用类
@@ -87,5 +95,6 @@ export {
   DesignProcessor,
   FigmaParser,
   Vue3Adapter,
-  commands
+  commands,
+  createSSEServer
 }; 

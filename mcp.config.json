@@ -24,6 +24,14 @@
       "handler": "convertDesignToVue3"
     }
   ],
+  "endpoints": {
+    "api": "/api/commands",
+    "events": "/events"
+  },
+  "server": {
+    "port": 3000,
+    "contentType": "text/event-stream"
+  },
   "configuration": {
     "properties": {
       "styleFormat": {
