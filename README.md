@@ -17,7 +17,7 @@
 # 使用npm安装
 npm install
 
-# 构建项目
+# 构建项目使用
 npm run build
 ```
 
