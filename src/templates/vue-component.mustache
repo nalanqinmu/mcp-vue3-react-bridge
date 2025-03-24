@@ -1,0 +1,49 @@
+<template>
+  <div class="{{componentName}}-container">
+    {{#elements}}
+    <div class="{{className}}">
+      {{#hasText}}{{text}}{{/hasText}}
+      {{#hasIcon}}<i class="{{iconClass}}"></i>{{/hasIcon}}
+      {{#hasImage}}<img src="{{imageSrc}}" alt="{{imageAlt}}" />{{/hasImage}}
+    </div>
+    {{/elements}}
+  </div>
+</template>
+
+<script setup>
+// 组件属性定义
+const props = defineProps({
+  {{#props}}
+  {{name}}: {
+    type: {{type}},
+    {{#hasDefault}}default: {{default}}{{/hasDefault}}
+  },
+  {{/props}}
+});
+
+// 导入依赖组件
+{{#imports}}
+import {{componentName}} from '{{path}}';
+{{/imports}}
+
+// 组件事件
+{{#events}}
+const {{name}} = defineEmits(['{{event}}']);
+{{/events}}
+</script>
+
+<style scoped>
+.{{componentName}}-container {
+  {{#styles.container}}
+  {{property}}: {{value}};
+  {{/styles.container}}
+}
+
+{{#styles.elements}}
+.{{className}} {
+  {{#properties}}
+  {{name}}: {{value}};
+  {{/properties}}
+}
+{{/styles.elements}}
+</style> 

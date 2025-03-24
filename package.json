@@ -1,0 +1,59 @@
+{
+  "name": "mcp-vue3-react-bridge",
+  "version": "0.1.0",
+  "description": "MCP工具 - 将设计稿转换为Vue3组件",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "design",
+    "figma",
+    "vue3",
+    "react",
+    "bridge",
+    "component",
+    "generator",
+    "cursor",
+    "mcp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/您的用户名/mcp-vue3-react-bridge.git"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "mustache": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/js-yaml": "^4.0.5",
+    "@types/mustache": "^4.2.2",
+    "@types/node": "^18.15.11",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "cursor": {
+    "mcpEntry": "dist/cursor-adapter.js",
+    "mcpVersion": "1.0.0",
+    "requiredPermissions": [
+      "workspace.read",
+      "workspace.write",
+      "figma.read"
+    ],
+    "configurationDefaults": {
+      "styleFormat": "css",
+      "includeProps": true,
+      "includeEvents": true
+    }
+  }
+} 

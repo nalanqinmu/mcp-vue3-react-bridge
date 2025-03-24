@@ -1,0 +1,47 @@
+{
+  "name": "mcp-vue3-react-bridge",
+  "version": "0.1.0",
+  "description": "将设计稿转换为Vue3组件的MCP工具",
+  "main": "dist/index.js",
+  "author": "",
+  "license": "MIT",
+  "type": "tool",
+  "target": "workspace",
+  "capabilities": {
+    "design": {
+      "figma": true
+    },
+    "components": {
+      "vue3": true,
+      "react": false
+    }
+  },
+  "commands": [
+    {
+      "id": "convert-figma-to-vue3",
+      "title": "将Figma设计转换为Vue3组件",
+      "description": "将Figma设计文件转换为Vue3组件代码",
+      "handler": "convertDesignToVue3"
+    }
+  ],
+  "configuration": {
+    "properties": {
+      "styleFormat": {
+        "type": "string",
+        "enum": ["css", "scss", "less"],
+        "default": "css",
+        "description": "组件的样式格式"
+      },
+      "includeProps": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否自动生成组件属性"
+      },
+      "includeEvents": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否自动生成组件事件"
+      }
+    }
+  }
+} 

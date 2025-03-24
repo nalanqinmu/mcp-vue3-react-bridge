@@ -1,0 +1,6 @@
+vue3:
+  componentTemplate: "templates/vue-component.mustache"
+  styleAdapter: "postcss-mixins"
+react: 
+  componentTemplate: "templates/react-component.mustache"
+  styleAdapter: "styled-components"
